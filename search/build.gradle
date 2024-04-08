@@ -143,7 +143,8 @@ jib {
         }
     }
     to {
-        image = "ceskaexpedice/kramerius:${version}"
+        //image = "ceskaexpedice/kramerius:${version}"
+        image = "pavelstastny/kramerius:${version}"
     }
     container {
         appRoot = '/usr/local/tomcat/webapps/search'
