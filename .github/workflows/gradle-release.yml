@@ -71,6 +71,7 @@ jobs:
     - name: Find ZIP file in build/distributions directory
       run: |
         ZIP_FILE=$(find build/distributions -name "*.zip" -type f -print -quit)
+        echo "ZIP_FILE=$ZIP_FILE" >> "$GITHUB_OUTPUT"
         echo "Found ZIP file: $ZIP_FILE"
       id: find_zip
 
