@@ -73,6 +73,13 @@ jobs:
         ZIP_FILE=$(find build/distributions -name "*.zip" -type f -print -quit)
         echo "Found ZIP file: $ZIP_FILE"
       id: find_zip
+
+    - name: Echo zip file
+      env:
+        ZIP_FILE: ${{ steps.find_zip.outputs.ZIP_FILE }}
+      run: |
+        echo "- Found ZIP file: $ZIP_FILE"
+      id: echo_zip
   
     - name: Upload Release Asset
       id: upload-release-asset
