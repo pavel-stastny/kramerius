@@ -20,6 +20,20 @@ jobs:
 
     steps:
     
+    # Prepare release      
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name:  ${{ inputs.tag_name }}
+        release_name: ${{ inputs.release_name }}
+        body: |
+          Description of the release
+        draft: true
+        prerelease: false
+
     # Docker image 
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v3    
@@ -48,19 +62,6 @@ jobs:
         name: search.zip
         path: search/build/libs
     
-    # Prepare release      
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name:  ${{ inputs.tag_name }}
-        release_name: ${{ inputs.release_name }}
-        body: |
-          Description of the release
-        draft: true
-        prerelease: false
 
     - name: Upload Release Asset
       id: upload-release-asset
